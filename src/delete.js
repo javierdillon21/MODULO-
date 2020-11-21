@@ -1,59 +1,66 @@
-import React, { useState } from 'react'
+import React, { isValidElement, useEffect, useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
-import Graphql from './graphql'
+import { createTodo } from './graphql/mutations'
+import { listTodos } from './graphql/queries'
+import { withAuthenticator } from '@aws-amplify/ui-react'
 import './App.css';
 
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
-API.graphql
 
-
-function MostrarReservas({ horarios }) {
+function Color({ namecolor }) {
   var tabla = []
   var columna;
-  horarios.forEach((diaobj) => {
-    for (var dia in diaobj) {
-    var intervalos = diaobj[dia].map((intervalo)=> {
-      return <div>{intervalo}</div>;
-    });
+  namecolor.forEach((diaobj) => {
+    for (let ) {
       columna = <div>
         <div>{dia}</div>
-        <div>{intervalos}</div>
+        <div>{diaobjdia][0]}</di}></div>
+        
+        <div>{diaobj[dia][1]}</div>
       </div>
-      tabla.push(columna)
-    }
-  })
-  return <div id="tabla">{tabla}</div>;
+      tabla.push(coluna) } }) }chaFin let [fechaIni, setFechaIni] = useState(undefined) let [fe function App() {
+  let [fe, setFechaFin] = useState(undefined)
+  IENDO isValidElement
+  let [duracijn, setfkk] = useState(0) 1fechaFin function fiun(){
+  flasjdlkfjasjd;flkjasd{}
+} 
+function Schedule(){
+    var fila= columna;
+    cuadritos=["tomates","cebollas","pimiento","pimiento"] 
+
 }
+aniiiiiiiiiiiiiiiiiiiiiiCHEVERE
+a
+ain
 
-function App() {
-  let [contador, setContador] = useState(1)
-  let [fechaIni, setFechaIni] = useState(undefined)
-  let [fechaFin, setFechaFin] = useState(undefined)
-  let [duracion, setDuracion] = useState(0)
-  let [horarios, setHorarios] = useState([])
-  let [calendario, setCalendario] = useState(undefined)
-  return (
-    <div>
 
-      <label>Inicio:<input type="date" onChange={(event) => { setFechaIni(event.target.valueAsDate.getTime()) }} /></label>
-      <label>Fin:<input type="date" onChange={(event) => setFechaFin(event.target.valueAsDate.getTime())} /></label>
+// hello
+// ftherethetherethererelsadjfkljasdflkasjdfljasdlfjasd
+hello
+flsadjfkljasdflkasjdfljasdlfjasd
+
+flkajsdlkfj lfkajsdklfj dasl hello flsadjfkljasdflkasjdfljasdlfjasd my frined kkkkkkkkkkkkkkkkk
+ 555555555     >Inicio:<input type="date" onChange={(event) => { setFechaIni(event.target.valueAsDate.getTime()event.target.valueAsDate.getTime()) }} /></label>
+
+
+      <label>Fin:<input type="" onChange={(event) => setFechaFin(event.target.valueAsDate.getTime())} /></label>
       <label>Duración:
-        <input type="number" id="duracion" min="5" max="60" step="5" onChange={(event) => setDuracion(event.target.valueAsNumber)} />
       </label>
 
-      <button onClick={() => setContador(++contador)}>
-        +</button>
-
+      <butjjjjjjClick={() => fjakssssssssdlkjetContador(++contador)}>
+       button onClick={() = +</button>
+dwhjahwjdkhjahdjhajddhajkwhdhdjahwdjkhwwdjakhwhdakjhdanlllhjshsd fsee f 
       <button onClick={() => setContador(--contador)}>
-        -</button>
-
-      {new Array(contador).fill(0).map(() =>
+        -</button> {new Array(contador).fill(0).map(() =>
         <DaySelection duracion={duracion} inicio={fechaIni} fin={fechaFin} horarios={horarios} />)}
 
-      <button onClick={() => setCalendario(<MostrarReservas horarios={horarios} />)}>GENERAR CALENDARIO</button>
+      <button onClick={() => horarios.forEach(function calendario(fecha, index) {
+        return <label> {fecha}  </label>
+      })}>GENERAR CALENDARIO</button>
 
-      {calendario}
+      <Color namecolor={mihorario} />
+      {tabla}
     </div>
 
   )
@@ -167,6 +174,15 @@ function DaySelection(props) {
 //       }
 //     </div>
 //   )
+// }
+
+// const styles = {
+//   container: { width: 400, margin: '0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 20 },
+//   todo: {  marginBottom: 15 },
+//   input: { border: 'none', backgroundColor: '#ddd', marginBottom: 10, padding: 8, fontSize: 18 },
+//   todoName: { fontSize: 20, fontWeight: 'bold' },
+//   todoDescription: { marginBottom: 0 },
+//   button: { backgroundColor: 'black', color: 'white', outline: 'none', fontSize: 18, padding: '12px 0px' }
 // }
 
 export default App

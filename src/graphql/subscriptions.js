@@ -1,34 +1,73 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+export const onCreateReservation = /* GraphQL */ `
+  subscription OnCreateReservation {
+    onCreateReservation {
       id
-      name
-      description
+      date
+      timeFrame
+      contextID
+      userID
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+export const onUpdateReservation = /* GraphQL */ `
+  subscription OnUpdateReservation {
+    onUpdateReservation {
       id
-      name
-      description
+      date
+      timeFrame
+      contextID
+      userID
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
+export const onDeleteReservation = /* GraphQL */ `
+  subscription OnDeleteReservation {
+    onDeleteReservation {
       id
-      name
-      description
+      date
+      timeFrame
+      contextID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreatePractice = /* GraphQL */ `
+  subscription OnCreatePractice {
+    onCreatePractice {
+      id
+      quota
+      lab
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePractice = /* GraphQL */ `
+  subscription OnUpdatePractice {
+    onUpdatePractice {
+      id
+      quota
+      lab
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePractice = /* GraphQL */ `
+  subscription OnDeletePractice {
+    onDeletePractice {
+      id
+      quota
+      lab
       createdAt
       updatedAt
     }

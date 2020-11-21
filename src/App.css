@@ -43,3 +43,11 @@
     transform: rotate(360deg);
   }
 }
+
+.char{
+  border: 1px solid black;
+}
+
+#tabla{
+  display:flex;
+}

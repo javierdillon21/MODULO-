@@ -1,5 +1,13 @@
-type Todo @model {
+type Reservation @model {
+  date: ID! 
+  timeFrame: String
+  contextID: String
+  userID: String
+
+}
+
+type Practice @model {
   id: ID!
-  name: String!
-  description: String
+  quota: String
+  lab: String
 }

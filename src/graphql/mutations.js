@@ -1,43 +1,91 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createReservation = /* GraphQL */ `
+  mutation CreateReservation(
+    $input: CreateReservationInput!
+    $condition: ModelReservationConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createReservation(input: $input, condition: $condition) {
       id
-      name
-      description
+      date
+      timeFrame
+      contextID
+      userID
       createdAt
       updatedAt
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateReservation = /* GraphQL */ `
+  mutation UpdateReservation(
+    $input: UpdateReservationInput!
+    $condition: ModelReservationConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateReservation(input: $input, condition: $condition) {
       id
-      name
-      description
+      date
+      timeFrame
+      contextID
+      userID
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteReservation = /* GraphQL */ `
+  mutation DeleteReservation(
+    $input: DeleteReservationInput!
+    $condition: ModelReservationConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteReservation(input: $input, condition: $condition) {
       id
-      name
-      description
+      date
+      timeFrame
+      contextID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPractice = /* GraphQL */ `
+  mutation CreatePractice(
+    $input: CreatePracticeInput!
+    $condition: ModelPracticeConditionInput
+  ) {
+    createPractice(input: $input, condition: $condition) {
+      id
+      quota
+      lab
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePractice = /* GraphQL */ `
+  mutation UpdatePractice(
+    $input: UpdatePracticeInput!
+    $condition: ModelPracticeConditionInput
+  ) {
+    updatePractice(input: $input, condition: $condition) {
+      id
+      quota
+      lab
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePractice = /* GraphQL */ `
+  mutation DeletePractice(
+    $input: DeletePracticeInput!
+    $condition: ModelPracticeConditionInput
+  ) {
+    deletePractice(input: $input, condition: $condition) {
+      id
+      quota
+      lab
       createdAt
       updatedAt
     }

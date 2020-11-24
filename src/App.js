@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
-import Graphql from './graphql'
+import { createReservation } from './graphql/mutations'
+import { createPractice } from './graphql/mutations'
 import './App.css';
 
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
-API.graphql
 
 
+const modeloReserva = { date: '', timeFrame: '', contextID: '', userID: '' }
 function MostrarReservas({ horarios }) {
   var tabla = []
   var columna;
   horarios.forEach((diaobj) => {
     for (var dia in diaobj) {
-    var intervalos = diaobj[dia].map((intervalo)=> {
-      return <div>{intervalo}</div>;
-    });
+      var intervalos = diaobj[dia].map((intervalo) => {
+        return <div>{intervalo}</div>;
+      });
       columna = <div>
         <div>{dia}</div>
         <div>{intervalos}</div>
@@ -33,6 +34,21 @@ function App() {
   let [duracion, setDuracion] = useState(0)
   let [horarios, setHorarios] = useState([])
   let [calendario, setCalendario] = useState(undefined)
+  var [reservation, setReservation] = useState(modeloReserva)
+
+  //función para añadir una reserva a la BD
+  async function addReservation() {
+    const reserva = { ...reservation }
+    horarios.forEach((diaobj) => {
+      var contador = 0;
+      for (dia in diaobj) {
+        setReservation({ ...modeloReserva, [date]: dia, [timeFrame]: diaobj[dia][contador] })
+      }
+    })
+
+    await API.graphql(graphqlOperation(createReservation, { input: reservation }))
+  }
+
   return (
     <div>
 
@@ -51,7 +67,10 @@ function App() {
       {new Array(contador).fill(0).map(() =>
         <DaySelection duracion={duracion} inicio={fechaIni} fin={fechaFin} horarios={horarios} />)}
 
-      <button onClick={() => setCalendario(<MostrarReservas horarios={horarios} />)}>GENERAR CALENDARIO</button>
+      <button onClick={() => {
+        setCalendario(<MostrarReservas horarios={horarios} />);
+        addReservation();
+      }}>MOSTRAR CALENDARIO</button>
 
       {calendario}
     </div>
@@ -105,7 +124,6 @@ function DaySelection(props) {
     </section>
   )
 }
-
 
 // const initialState = { name: '', description: '' }
 

@@ -1,6 +1,6 @@
 type Reservation @model {
   date: ID! 
-  timeFrame: String
+  timeFrame: [String]
   contextID: String
   userID: String
 

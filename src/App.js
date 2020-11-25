@@ -8,7 +8,6 @@ import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
 
 
-const modeloReserva = { date: '', timeFrame: '', contextID: '', userID: '' }
 function MostrarReservas({ horarios }) {
   var tabla = []
   var columna;
@@ -34,25 +33,25 @@ function App() {
   let [duracion, setDuracion] = useState(0)
   let [horarios, setHorarios] = useState([])
   let [calendario, setCalendario] = useState(undefined)
-  var [reservation, setReservation] = useState(modeloReserva)
 
   //función para añadir una reserva a la BD
   async function addReservation() {
-    const reserva = { ...reservation }
-    horarios.forEach((diaobj) => {
-      var contador = 0;
-      for (dia in diaobj) {
-        setReservation({ ...modeloReserva, [date]: dia, [timeFrame]: diaobj[dia][contador] })
+    horarios.forEach(async function (diaobj) {
+      for (var dia in diaobj) {
+        var reservation = { date: dia, timeFrame: diaobj[dia], contextID: '', userID: '' }
+        await API.graphql(graphqlOperation(createReservation, { input: reservation }))
       }
     })
+  }
 
-    await API.graphql(graphqlOperation(createReservation, { input: reservation }))
+  //función para añadir una práctica a la BD
+  async function addPractice() {
+    var practice = { quota: String.toString(duracion), lab: '' }
+    await API.graphql(graphqlOperation(createPractice, { input: practice }))
   }
 
   return (
-    <div>
-
-      <label>Inicio:<input type="date" onChange={(event) => { setFechaIni(event.target.valueAsDate.getTime()) }} /></label>
+    <div> <label>Inicio:<input type="date" onChange={(event) => { setFechaIni(event.target.valueAsDate.getTime()) }} /></label>
       <label>Fin:<input type="date" onChange={(event) => setFechaFin(event.target.valueAsDate.getTime())} /></label>
       <label>Duración:
         <input type="number" id="duracion" min="5" max="60" step="5" onChange={(event) => setDuracion(event.target.valueAsNumber)} />
@@ -70,6 +69,7 @@ function App() {
       <button onClick={() => {
         setCalendario(<MostrarReservas horarios={horarios} />);
         addReservation();
+        addPractice();
       }}>MOSTRAR CALENDARIO</button>
 
       {calendario}
@@ -83,13 +83,15 @@ function DaySelection(props) {
   let [hIni, setHIni] = useState(undefined)
   let [hFin, setHFin] = useState(undefined)
   let [daySelected, setDaySelected] = useState("lunes")
+
+  //función para convertir una cantidad de minutos en formato 24horas
   function conversion(m) {
     var tiempo = m / 60;
     var hour = Math.floor(tiempo)
-    var min = (tiempo - hour) * 60
+    var min = Math.round((tiempo - hour) * 60)
+    if (min.toString().length == 1) min = min.toString() + "0"
     return hour + ":" + min
   }
-
 
   return (
     <section id="daySelection">
@@ -106,7 +108,7 @@ function DaySelection(props) {
           var dia = new Date(i)
           if (dia.getDay() == days.indexOf(daySelected)) {
             console.log("Sí es el día")
-            dia = dia.toUTCString()
+            dia = dia.getUTCDate()+'-'+(dia.getUTCMonth()+1)+'-'+dia.getFullYear()
             var d = {}
             d[dia] = []
             for (var m = hIni; m + props.duracion <= hFin; m += props.duracion) {
@@ -125,66 +127,5 @@ function DaySelection(props) {
   )
 }
 
-// const initialState = { name: '', description: '' }
-
-// const App = () => {
-//   const [formState, setFormState] = useState(initialState)
-//   const [todos, setTodos] = useState([])
-
-//   useEffect(() => {
-//     fetchTodos()
-//   }, [])
-
-//   function setInput(key, value) {
-//     setFormState({ ...formState, [key]: value })
-//   }
-
-//   async function fetchTodos() {
-//     try {
-//       const todoData = await API.graphql(graphqlOperation(listTodos))
-//       const todos = todoData.data.listTodos.items
-//       setTodos(todos)
-//     } catch (err) { console.log('error fetching todos') }
-//   }
-
-//   async function addTodo() {
-//     try {
-//       if (!formState.name || !formState.description) return
-//       const todo = { ...formState }
-//       setTodos([...todos, todo])
-//       setFormState(initialState)
-//       await API.graphql(graphqlOperation(createTodo, {input: todo}))
-//     } catch (err) {
-//       console.log('error creating todo:', err)
-//     }
-//   }
-
-//   return (
-//     <div style={styles.container}>
-//       <h2>Amplify Todos</h2>
-//       <input
-//         onChange={event => setInput('name', event.target.value)}
-//         style={styles.input}
-//         value={formState.name} 
-//         placeholder="Name"
-//       />
-//       <input
-//         onChange={event => setInput('description', event.target.value)}
-//         style={styles.input}
-//         value={formState.description}
-//         placeholder="Description"
-//       />
-//       <button style={styles.button} onClick={addTodo}>Create Todo</button>
-//       {
-//         todos.map((todo, index) => (
-//           <div key={todo.id ? todo.id : index} style={styles.todo}>
-//             <p style={styles.todoName}>{todo.name}</p>
-//             <p style={styles.todoDescription}>{todo.description}</p>
-//           </div>
-//         ))
-//       }
-//     </div>
-//   )
-// }
 
 export default App

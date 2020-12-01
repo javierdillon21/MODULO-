@@ -51,3 +51,15 @@
 #tabla{
   display:flex;
 }
+
+.intervalo{
+  border-width: 0.1em;
+  border-style: ridge;
+  border-color: darkslategray;
+  margin-top: 0.1em;
+}
+
+.intervalo:hover{
+  background-color: lightblue;
+  cursor: pointer ;
+}

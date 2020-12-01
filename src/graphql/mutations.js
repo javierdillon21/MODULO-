@@ -9,9 +9,8 @@ export const createReservation = /* GraphQL */ `
     createReservation(input: $input, condition: $condition) {
       id
       date
-      timeFrame
+      timeFrames
       contextID
-      userID
       createdAt
       updatedAt
     }
@@ -25,9 +24,8 @@ export const updateReservation = /* GraphQL */ `
     updateReservation(input: $input, condition: $condition) {
       id
       date
-      timeFrame
+      timeFrames
       contextID
-      userID
       createdAt
       updatedAt
     }
@@ -41,9 +39,8 @@ export const deleteReservation = /* GraphQL */ `
     deleteReservation(input: $input, condition: $condition) {
       id
       date
-      timeFrame
+      timeFrames
       contextID
-      userID
       createdAt
       updatedAt
     }

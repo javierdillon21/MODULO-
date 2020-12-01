@@ -1,9 +1,8 @@
 type Reservation @model {
   date: ID! 
-  timeFrame: [String]
+  timeFrames: String
   contextID: String
-  userID: String
-
+  
 }
 
 type Practice @model {

@@ -6,9 +6,8 @@ export const onCreateReservation = /* GraphQL */ `
     onCreateReservation {
       id
       date
-      timeFrame
+      timeFrames
       contextID
-      userID
       createdAt
       updatedAt
     }
@@ -19,9 +18,8 @@ export const onUpdateReservation = /* GraphQL */ `
     onUpdateReservation {
       id
       date
-      timeFrame
+      timeFrames
       contextID
-      userID
       createdAt
       updatedAt
     }
@@ -32,9 +30,8 @@ export const onDeleteReservation = /* GraphQL */ `
     onDeleteReservation {
       id
       date
-      timeFrame
+      timeFrames
       contextID
-      userID
       createdAt
       updatedAt
     }

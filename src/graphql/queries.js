@@ -6,9 +6,8 @@ export const getReservation = /* GraphQL */ `
     getReservation(id: $id) {
       id
       date
-      timeFrame
+      timeFrames
       contextID
-      userID
       createdAt
       updatedAt
     }
@@ -24,9 +23,8 @@ export const listReservations = /* GraphQL */ `
       items {
         id
         date
-        timeFrame
+        timeFrames
         contextID
-        userID
         createdAt
         updatedAt
       }

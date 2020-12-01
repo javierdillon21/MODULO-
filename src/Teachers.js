@@ -27,7 +27,7 @@ function TeacherInterface() {
         diaobj[dia].forEach((time)=>{
           timesArray[time] = ''
         })
-        var reservation = { date: dia, timeFrames: timesArray, contextID: ''}
+        var reservation = { date: dia, timeFrames: JSON.stringify(timesArray), contextID: ''}
         await API.graphql(graphqlOperation(createReservation, { input: reservation }))
       }
     })

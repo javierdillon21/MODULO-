@@ -13,31 +13,34 @@ function StudentInterface() {
     async function MostrarReservas() {
         const DataReservations = await API.graphql(graphqlOperation(listReservations))
         const registros = DataReservations.data.listReservations.items
-        for (var dataobj in registros) {
+        registros.forEach((dataobj) => {
             var dia = dataobj.date
+            var timesobj = JSON.parse(dataobj.timeFrames)
             var tabla = []
-            var columna;
-            var intervalos = dataobj.timeframes.map((intervalo) => {
+            var intervalos = Object.keys(timesobj).map((intervalo) => {
                 return <div>{intervalo}</div>;
-            })
-            columna = <div>
+            });
+            var columna = <div>
                 <div>{dia}</div>
                 <div>{intervalos}</div>
             </div>
             tabla.push(columna)
         }
-        return <div id="tabla">{tabla}</div>;
+        
+            return <div id="tabla"> {tabla} </div>
+        
     }
+
 
     // await API.graphql(graphqlOperation(updateReservation,{input:{} }))
 
 
     return (<div>
-        <button onClick={() => setData(MostrarReservas())}>
+        <button onClick={async function () { MostrarReservas() }}>
             ok
         </button>
         {data}
     </div>)
-
 }
+
 export default StudentInterface

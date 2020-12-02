@@ -20,8 +20,9 @@ async function MostrarReservas() {
             return <div className="intervalo" onClick={() => {
                 //asignando 'reservado' al clickear un horario. Debe asignarse el id del usurario
                 timesobj[intervalo] = "reservado"
-                //testeo
-                console.log(intervalo + ': ' + timesobj[intervalo])
+                console.log(timesobj)
+                // //actualizando la tabla reservation con los horarios reservados
+                // await API.graphql(graphqlOperation(updateReservation, { input: { date: dia, timeFrames: timesobj } }))
             }}>{intervalo}</div>
         });
         var columna = <div>
